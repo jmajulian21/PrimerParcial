@@ -1,6 +1,6 @@
 <?php 
-//require_once("clases/AccesoDatos.php");
-//require_once("clases/cd.php");
+require_once("clases/AccesoDatos.php");
+require_once("clases/voto.php");
 
 $queHago=$_POST['queHacer'];
 
@@ -15,9 +15,19 @@ switch ($queHago) {
 			include("partes/formLogin.php");
 		break;
 	case 'MostrarFormAlta':
-			include("partes/formCd.php");
+			include("partes/formVoto.php");
 		break;
+ 	case 'GuardarVoto':
+			$voto = new voto();
+			$voto->id=$_POST['id'];
+			$voto->provincia=$_POST['provincia'];
+			$voto->provincia=$_POST['provincia'];
+			$voto->sexo=$_POST['sexo'];
+			$voto->dni=$_POST['dni'];
+			$cantidad=$voto->GuardarVoto();
+			echo $cantidad;
 
+		break;
 		break;
 	default:
 		# code...

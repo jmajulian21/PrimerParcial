@@ -1,11 +1,11 @@
-function BorrarCD(idParametro)
+function BorrarVoto(idParametro)
 {
 	//alert(idParametro);
 		var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
 		data:{
-			queHacer:"BorrarCD",
+			queHacer:"BorrarVoto",
 			id:idParametro	
 		}
 	});
@@ -19,22 +19,23 @@ function BorrarCD(idParametro)
 	});	
 }
 
-function EditarCD(idParametro)
+function EditarVoto(idParametro)
 {
 	var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
 		data:{
-			queHacer:"TraerCD",
+			queHacer:"TraerVoto",
 			id:idParametro	
 		}
 	});
 	funcionAjax.done(function(retorno){
-		var cd =JSON.parse(retorno);	
-		$("#idCD").val(cd.id);
-		$("#cantante").val(cd.cantante);
-		$("#titulo").val(cd.titulo);
-		$("#anio").val(cd.año);
+		var Voto =JSON.parse(retorno);	
+		$("#id").val(Voto.id);
+		$("#provincia").val(Voto.provincia);
+		$("#presidenciable").val(Voto.presidenciable);
+		$("#sexo").val(Voto.sexo);
+		$("#dni").val(Voto.dni);
 	});
 	funcionAjax.fail(function(retorno){	
 		$("#informe").html(retorno.responseText);	
@@ -42,22 +43,23 @@ function EditarCD(idParametro)
 	Mostrar("MostrarFormAlta");
 }
 
-function GuardarCD()
+function GuardarVoto()
 {
-		var id=$("#idCD").val();
-		var cantante=$("#cantante").val();
-		var titulo=$("#titulo").val();
-		var anio=$("#anio").val();
+		var id=$("#id").val();
+		var provincia=$("#provincia").val();
+		var presidenciable=$("#presidenciable").val();
+		var sexo=$("#sexo").val();
+		var dni=$("#dni").val();
 
 		var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
 		data:{
-			queHacer:"GuardarCD",
+			queHacer:"GuardarVoto",
 			id:id,
-			cantante:cantante,
-			titulo:titulo,
-			anio:anio	
+			provincia:provincia,
+			presidenciable:presidenciable,
+			sexo:sexo	
 		}
 	});
 	funcionAjax.done(function(retorno){
